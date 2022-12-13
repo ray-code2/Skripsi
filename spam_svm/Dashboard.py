@@ -136,6 +136,7 @@ def color_df(val):
 
 
 
+
 @st.experimental_singleton(show_spinner=False,suppress_st_warning=True)
 def countPlot(df):
     col1,col2 = st.columns([2,2])
@@ -185,6 +186,7 @@ def get_driver():
     options = Options()
     options.add_argument('--disable-gpu')
     options.add_argument("--mute-audio")
+    options.add_argument("start-maximized")
     options.add_argument('--headless')
     return webdriver.Chrome(service=Service(ChromeDriverManager().install()),options=options)
 
