@@ -20,10 +20,10 @@ from sklearn.preprocessing import LabelEncoder
 # from sklearn.multiclass import OneVsOneClassifier
 #import library ambil data komentar
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -182,15 +182,16 @@ def countPlot(df):
     
     
  
-@st.experimental_singleton
-def get_driver():
-    options = Options()
-    options.add_argument("--headless") #headless
-    options.add_argument("--mute-audio")
-    return webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+
 
 @st.experimental_singleton(show_spinner=False,suppress_st_warning=True)
 def ambil_komen(url, angka, semua):
+    def get_driver():
+        return webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+    options = Options()
+    options.add_argument('--headless')
+    options.add_argument("--mute-audio")
+    options.add_argument('--disable-gpu')
     driver = get_driver()
     wait = WebDriverWait(driver,20)
     driver.get(url)
