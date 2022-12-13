@@ -190,7 +190,6 @@ def ambil_komen(url, angka, semua):
 #     option.add_argument("start-maximized")
 #     option.add_argument('--headless')
     service= Service('spam_svm/chromedriver')
-    service.start()
     driver = webdriver.Remote(service.service_url)
     time.sleep(5)
     wait = WebDriverWait(driver,20)
