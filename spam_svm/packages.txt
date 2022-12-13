@@ -1,6 +1,6 @@
 chromium
 chromium-driver
-
+chromium-browser
 libglib2.0-0 
 libnss3 
 libgconf-2-4 
