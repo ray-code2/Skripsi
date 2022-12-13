@@ -211,7 +211,7 @@ xlwt==0.7.2
 yarg==0.1.9
 zipp==3.10.0
 
-libglib2
+libglib2.0.0
 libnss3
 libgconf-2-4
 libfontconfig1
