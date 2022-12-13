@@ -42,7 +42,7 @@ emoji==1.7.0
 en-core-web-sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.4.0/en_core_web_sm-3.4.0-py3-none-any.whl
 entrypoints==0.4
 et-xmlfile==1.1.0
-exceptiongroup==1.0.1
+exceptiongroup==1.0.4
 executing==0.9.1
 fastjsonschema==2.16.1
 filelock>=3.8.2
