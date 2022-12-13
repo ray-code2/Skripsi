@@ -39,7 +39,8 @@ from pyxlsb import open_workbook as open_xlsb
 import joblib
 
 # https://www.youtube.com/watch?v=EJYK3PtyJLY
-
+import nltk
+nltk.download('stopwords')
 
 
 
