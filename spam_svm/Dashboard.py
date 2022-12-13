@@ -184,7 +184,7 @@ def countPlot(df):
 
 @st.experimental_singleton(show_spinner=False,suppress_st_warning=True)
 def ambil_komen(url, angka, semua):
-    Chrome_driver_path = "/Users/Antônio/Desktop/roletarobo/geckodriver.exe"
+    Chrome_driver_path = "Skripsi/spam_svm/chromedriver.exe"
     option = Options()
     option.add_argument('--disable-gpu')
     option.add_argument("--mute-audio")
