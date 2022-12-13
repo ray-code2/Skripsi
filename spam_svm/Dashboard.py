@@ -188,7 +188,7 @@ def ambil_komen(url, angka, semua):
     option = Options()
     option.add_argument('--disable-gpu')
     option.add_argument("--test-type")
-    options.add_argument('--log-level=3')
+    option.add_argument('--log-level=3')
     option.add_argument("--start-maximized")
     option.add_argument("--disable-web-security")
     option.add_argument("--allow-running-insecure-content")
