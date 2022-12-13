@@ -186,7 +186,7 @@ def get_driver():
     options.add_argument('--disable-gpu')
     options.add_argument("--mute-audio")
     options.add_argument('--headless')
-    return webdriver.Chrome(service=Service(ChromeDriverManager().install()),options=options,executable_path=r"spam_svm/chromedriver.exe"))
+    return webdriver.Chrome(service=Service(ChromeDriverManager().install()),options=options)
 
 @st.experimental_singleton(show_spinner=False,suppress_st_warning=True)
 def ambil_komen(url, angka, semua):
