@@ -42,6 +42,7 @@ import joblib
 # https://www.youtube.com/watch?v=EJYK3PtyJLY
 import nltk
 nltk.download('stopwords')
+from webdriver_manager.utils import ChromeType
 
 
 st.set_page_config(
@@ -204,8 +205,8 @@ def ambil_komen(url, angka, semua):
 #     option.add_argument('--headless')
     option.add_argument('--disable-blink-features=AutomationControlled')
 #     s=Service('spam_svm/chromedriver.exe')
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()),options=option)
-    service.start()
+    driver = webdriver.Chrome(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install(),options=option)
+#     service.start()
     driver.get(url)
     wait = WebDriverWait(driver,25)
     
