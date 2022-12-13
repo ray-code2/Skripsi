@@ -183,12 +183,22 @@ def countPlot(df):
         st.pyplot(fig)
     
     
-@st.experimental_singleton
-def get_driver():
-    options = Options()
-    options.add_argument("--headless") #headless
-    options.add_argument("--mute-audio")
-    return webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+ 
+
+    
+
+with st.echo():
+    from selenium import webdriver
+    from selenium.webdriver.chrome.options import Options
+    from selenium.webdriver.chrome.service import Service
+    from webdriver_manager.chrome import ChromeDriverManager 
+    
+    @st.experimental_singleton
+    def get_driver():
+        options = Options()
+        options.add_argument("--headless") #headless
+        options.add_argument("--mute-audio")
+        return webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 
 @st.experimental_singleton(show_spinner=False,suppress_st_warning=True)
 def ambil_komen(url, angka, semua):
