@@ -184,15 +184,19 @@ def countPlot(df):
 
 @st.experimental_singleton(show_spinner=False,suppress_st_warning=True)
 def ambil_komen(url, angka, semua):
+    Chrome_driver_path = "/Users/Antônio/Desktop/roletarobo/geckodriver.exe"
     option = Options()
     option.add_argument('--disable-gpu')
     option.add_argument("--mute-audio")
+    
     option.add_argument("start-maximized")
     option.add_argument('--headless')
-#     options = Options()
     option.add_argument('--disable-blink-features=AutomationControlled')
-    service= Service('spam_svm/chromedriver')
-    driver = webdriver.Remote(service.service_url)
+    driver = webdriver.Chrome(executable_path = Chrome_driver_path,options = option)
+    
+#     options = Options()
+#     service= Service('spam_svm/chromedriver')
+#     driver = webdriver.Remote(service.service_url)
     time.sleep(5)
     wait = WebDriverWait(driver,20)
     driver.get(url)
