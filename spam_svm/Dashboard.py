@@ -23,6 +23,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -182,13 +183,18 @@ def countPlot(df):
         st.pyplot(fig)
     
     
+@st.experimental_singleton
+def get_driver():
+    return webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 
 @st.experimental_singleton(show_spinner=False,suppress_st_warning=True)
 def ambil_komen(url, angka, semua):
-    options = webdriver.ChromeOptions()
+    options = Options()
     options.add_argument("--headless") #headless
     options.add_argument("--mute-audio")
-    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install(),options=options)
+
+    driver = get_driver()
+    
     wait = WebDriverWait(driver,20)
     driver.get(url)
     time.sleep(1)
