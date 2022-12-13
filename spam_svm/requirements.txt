@@ -169,7 +169,7 @@ sqlalchemy-migrate==0.11.0
 sqlparse==0.4.2
 srsly==2.4.4
 stack-data==0.3.0
-streamlit
+streamlit>=1.10.0
 swifter==1.3.4
 tabulate==0.8.10
 Tempita==0.5.2
