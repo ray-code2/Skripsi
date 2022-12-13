@@ -180,13 +180,13 @@ def countPlot(df):
         plt.title("Pie Plot", fontsize=26, color='white')
         st.pyplot(fig)
     
-@st.experimental_singleton
+@st.experimental_singleton(show_spinner=False,suppress_st_warning=True)
 def get_driver():
     options = Options()
     options.add_argument('--disable-gpu')
     options.add_argument("--mute-audio")
     options.add_argument('--headless')
-    return webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options,executable_path=r'spam_svm\chromedriver')
+    return webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options,executable_path=r'spam_svm/chromedriver')
 
 
 @st.experimental_singleton(show_spinner=False,suppress_st_warning=True)
