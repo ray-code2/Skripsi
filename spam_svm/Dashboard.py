@@ -193,13 +193,8 @@ def ambil_komen(url, angka, semua):
     option.add_argument('--headless')
     option.add_argument('--disable-blink-features=AutomationControlled')
     driver = webdriver.Chrome(executable_path = Chrome_driver_path,options = option)
-    
-#     options = Options()
-#     service= Service('spam_svm/chromedriver')
-#     driver = webdriver.Remote(service.service_url)
-    time.sleep(5)
-    wait = WebDriverWait(driver,20)
     driver.get(url)
+    wait = WebDriverWait(driver,25)
     time.sleep(1)
     if semua == True:
         prev_h = 0
@@ -282,7 +277,7 @@ def ambil_komen(url, angka, semua):
         
 
     else:
-        time.sleep(5) 
+        time.sleep(2) 
         for item in range(angka): #angka adalah jumlah iterasi dan per iterasi akan di scrape 20 data
             wait.until(EC.visibility_of_element_located((By.TAG_NAME, "body"))).send_keys(Keys.END)
             # wait.until(EC.element_to_be_clickable((By.XPATH,"//*[@class='input-content' or @class='style-scope' or @class='paper-input-container']")))
