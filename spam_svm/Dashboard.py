@@ -28,6 +28,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+
 from bs4 import BeautifulSoup
 import time
 
@@ -187,26 +188,26 @@ def countPlot(df):
 @st.experimental_singleton(show_spinner=False,suppress_st_warning=True)
 def ambil_komen(url, angka, semua):
 #     Chrome_driver_path = "spam_svm/chromedriver.exe"
-    option = Options()
-    option.add_argument('--disable-gpu')
-    option.add_argument("--test-type")
-    option.add_argument('--log-level=3')
-    option.add_argument("--start-maximized")
-    option.add_argument("--disable-web-security")
-    option.add_argument("--allow-running-insecure-content")
-    option.add_argument("--mute-audio")
-    option.add_argument("--headless")
-    option.add_argument("--no-sandbox")
-    option.add_argument("--disable-dev-shm-usage")
-    option.add_argument("--disable-features=NetworkService")
-    option.add_argument("--window-size=1920x1080")
-    option.add_argument("--disable-features=VizDisplayCompositor")
+    options = Options()
+    options.add_argument('--disable-gpu')
+    options.add_argument("--test-type")
+    options.add_argument('--log-level=3')
+    options.add_argument("--start-maximized")
+    options.add_argument("--disable-web-security")
+    options.add_argument("--allow-running-insecure-content")
+    options.add_argument("--mute-audio")
+    options.add_argument("--headless")
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
+    options.add_argument("--disable-features=NetworkService")
+    options.add_argument("--window-size=1920x1080")
+    options.add_argument("--disable-features=VizDisplayCompositor")
     
-    option.add_argument("--start-maximized")
+    options.add_argument("--start-maximized")
 #     option.add_argument('--headless')
-    option.add_argument('--disable-blink-features=AutomationControlled')
+    options.add_argument('--disable-blink-features=AutomationControlled')
 #     s=Service('spam_svm/chromedriver.exe')
-    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()),options=option)
+    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()),options=options)
 #     service.start()
     driver.get(url)
     wait = WebDriverWait(driver,25)
