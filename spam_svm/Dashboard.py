@@ -183,7 +183,7 @@ def countPlot(df):
     
     
 
-@st.experimental_singleton(show_spinner=False,suppress_st_warning=True)
+# @st.experimental_singleton(show_spinner=False,suppress_st_warning=True)
 def ambil_komen(url, angka, semua):
     option = webdriver.ChromeOptions()
     option.add_argument("--headless") #headless
