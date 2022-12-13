@@ -22,6 +22,7 @@ from sklearn.preprocessing import LabelEncoder
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.service import Service 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
@@ -183,7 +184,10 @@ def countPlot(df):
 
 @st.experimental_singleton(show_spinner=False,suppress_st_warning=True)
 def ambil_komen(url, angka, semua):
-    driver = webdriver.Chrome(executable_path='spam_svm/chromedriver')
+    options = Options()
+    options.add_argument("--headless") #headless
+    options.add_argument("--mute-audio")
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options ,executable_path='spam_svm/chromedriver')
     wait = WebDriverWait(driver,20)
     driver.get(url)
     time.sleep(1)
