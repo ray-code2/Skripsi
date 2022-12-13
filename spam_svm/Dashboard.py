@@ -196,7 +196,7 @@ def ambil_komen(url, angka, semua):
     
     
     option.add_argument("--start-maximized")
-    option.add_argument('--headless')
+#     option.add_argument('--headless')
     option.add_argument('--disable-blink-features=AutomationControlled')
 #     s=Service('spam_svm/chromedriver.exe')
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()),options=option)
