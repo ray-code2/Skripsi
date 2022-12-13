@@ -183,12 +183,12 @@ def countPlot(df):
     
     
 
-# @st.experimental_singleton(show_spinner=False,suppress_st_warning=True)
+@st.experimental_singleton(show_spinner=False,suppress_st_warning=True)
 def ambil_komen(url, angka, semua):
     options = webdriver.ChromeOptions()
     options.add_argument("--headless") #headless
     options.add_argument("--mute-audio")
-    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install('spam_svm/chromedriver'),options=options)
+    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install(),options=options)
     wait = WebDriverWait(driver,20)
     driver.get(url)
     time.sleep(1)
