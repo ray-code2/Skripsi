@@ -189,6 +189,8 @@ def ambil_komen(url, angka, semua):
 #     option.add_argument("--mute-audio")
 #     option.add_argument("start-maximized")
 #     option.add_argument('--headless')
+    options = Options()
+    options.add_argument('--disable-blink-features=AutomationControlled')
     service= Service('spam_svm/chromedriver')
     driver = webdriver.Remote(service.service_url)
     time.sleep(5)
