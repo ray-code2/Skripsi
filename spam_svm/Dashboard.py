@@ -24,6 +24,7 @@ from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service 
 from selenium.webdriver.common.by import By
+
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -42,7 +43,7 @@ import joblib
 # https://www.youtube.com/watch?v=EJYK3PtyJLY
 import nltk
 nltk.download('stopwords')
-from webdriver_manager.utils import ChromeType
+from webdriver_manager.core.utils import ChromeType
 
 
 st.set_page_config(
