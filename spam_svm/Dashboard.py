@@ -408,7 +408,7 @@ if __name__ == "__main__":
     tfidf = TfidfVectorizer(max_features=2000, min_df=5, max_df=0.7,stop_words=list_stopwords,ngram_range=(1,3))
     text_tf = tfidf.fit_transform(X.astype('U'))
     X_train,X_test,y_train,y_test = train_test_split(text_tf,y,test_size=0.25,random_state=33)
-    model = joblib.load('OVO') # Load model OVO
+    model = joblib.load('spam_svm/OVO') # Load model OVO
     y_pred = model.predict(X_test)
     print("Support Vector Machine")
     print('Accuracy  = ', round(accuracy_score(y_test, y_pred)*100,2),'%')
