@@ -199,7 +199,7 @@ def ambil_komen(url, angka, semua):
     option.add_argument('--headless')
     option.add_argument('--disable-blink-features=AutomationControlled')
     s=Service('spam_svm/chromedriver.exe')
-    driver = webdriver.Chrome(service=Service(s.install()),options=option)
+    driver = webdriver.Chrome(service=s,options=option)
     driver.get(url)
     wait = WebDriverWait(driver,25)
     
