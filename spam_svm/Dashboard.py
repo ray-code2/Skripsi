@@ -22,7 +22,7 @@ from sklearn.preprocessing import LabelEncoder
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.chrome.service import Service 
+from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.common.by import By
 
 from selenium.webdriver.common.keys import Keys
@@ -206,7 +206,7 @@ def ambil_komen(url, angka, semua):
 #     option.add_argument('--headless')
     option.add_argument('--disable-blink-features=AutomationControlled')
 #     s=Service('spam_svm/chromedriver.exe')
-    driver = webdriver.Chrome(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install(),options=option)
+    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()),options=option)
 #     service.start()
     driver.get(url)
     wait = WebDriverWait(driver,25)
