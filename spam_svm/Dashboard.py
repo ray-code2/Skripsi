@@ -187,13 +187,14 @@ def ambil_komen(url, angka, semua):
 #     Chrome_driver_path = "spam_svm/chromedriver.exe"
     option = Options()
     option.add_argument('--disable-gpu')
-    option.add_argument("test-type");
-    option.add_argument("--start-maximized");
-    option.add_argument("--disable-web-security");
-    option.add_argument("--allow-running-insecure-content");
+    option.add_argument("--test-type")
+    option.add_argument("--start-maximized")
+    option.add_argument("--disable-web-security")
+    option.add_argument("--allow-running-insecure-content")
     option.add_argument("--mute-audio")
     
-    option.add_argument("start-maximized")
+    
+    option.add_argument("--start-maximized")
     option.add_argument('--headless')
     option.add_argument('--disable-blink-features=AutomationControlled')
     s=Service('spam_svm/chromedriver.exe')
