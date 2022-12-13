@@ -394,7 +394,7 @@ def ambil_komen(url, angka, semua):
 #code utama
 if __name__ == "__main__":
     le = LabelEncoder()
-    path = open(r'/Users/raymondtjahyadi/Desktop/Skripsi/spam_svm/data.csv')
+    path = open(r'spam_svm/data.csv')
     df = pd.read_csv(path)
     df['Label'] = le.fit_transform(df['Label'])
     X = df['Komentar'].values
