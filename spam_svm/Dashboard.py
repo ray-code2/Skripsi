@@ -184,12 +184,12 @@ def countPlot(df):
 
 @st.experimental_singleton(show_spinner=False,suppress_st_warning=True)
 def ambil_komen(url, angka, semua):
-#     option = Options()
-#     option.add_argument('--disable-gpu')
-#     option.add_argument("--mute-audio")
-#     option.add_argument("start-maximized")
-#     option.add_argument('--headless')
-    options = Options()
+    option = Options()
+    option.add_argument('--disable-gpu')
+    option.add_argument("--mute-audio")
+    option.add_argument("start-maximized")
+    option.add_argument('--headless')
+#     options = Options()
     options.add_argument('--disable-blink-features=AutomationControlled')
     service= Service('spam_svm/chromedriver')
     driver = webdriver.Remote(service.service_url)
@@ -278,6 +278,7 @@ def ambil_komen(url, angka, semua):
         
 
     else:
+        time.sleep(5) 
         for item in range(angka): #angka adalah jumlah iterasi dan per iterasi akan di scrape 20 data
             wait.until(EC.visibility_of_element_located((By.TAG_NAME, "body"))).send_keys(Keys.END)
             # wait.until(EC.element_to_be_clickable((By.XPATH,"//*[@class='input-content' or @class='style-scope' or @class='paper-input-container']")))
