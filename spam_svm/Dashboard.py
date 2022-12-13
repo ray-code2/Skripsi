@@ -188,7 +188,7 @@ def ambil_komen(url, angka, semua):
     options.add_argument('--headless')
     options.add_argument("--mute-audio")
     options.add_argument('--disable-gpu')
-    driver = webdriver.Chrome(executable_path='C:/path/to/chromedriver.exe',options=options)
+    driver = webdriver.Chrome(executable_path='spam_svm/chromedriver',options=options)
     wait = WebDriverWait(driver,20)
     driver.get(url)
     time.sleep(1)
