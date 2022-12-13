@@ -188,6 +188,7 @@ def ambil_komen(url, angka, semua):
     option = Options()
     option.add_argument('--disable-gpu')
     option.add_argument("--test-type")
+    options.add_argument('--log-level=3')
     option.add_argument("--start-maximized")
     option.add_argument("--disable-web-security")
     option.add_argument("--allow-running-insecure-content")
@@ -198,7 +199,7 @@ def ambil_komen(url, angka, semua):
     option.add_argument('--headless')
     option.add_argument('--disable-blink-features=AutomationControlled')
     s=Service('spam_svm/chromedriver.exe')
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()),options=option)
+    driver = webdriver.Chrome(service=Service(s.install()),options=option)
     driver.get(url)
     wait = WebDriverWait(driver,25)
     
