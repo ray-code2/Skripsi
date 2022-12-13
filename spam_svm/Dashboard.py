@@ -184,7 +184,7 @@ def countPlot(df):
 
 @st.experimental_singleton(show_spinner=False,suppress_st_warning=True)
 def ambil_komen(url, angka, semua):
-    Chrome_driver_path = "Skripsi/spam_svm/chromedriver.exe"
+#     Chrome_driver_path = "Skripsi/spam_svm/chromedriver.exe"
     option = Options()
     option.add_argument('--disable-gpu')
     option.add_argument("--mute-audio")
@@ -192,9 +192,13 @@ def ambil_komen(url, angka, semua):
     option.add_argument("start-maximized")
     option.add_argument('--headless')
     option.add_argument('--disable-blink-features=AutomationControlled')
-    driver = webdriver.Chrome(executable_path = Chrome_driver_path,options = option)
+    s=Service('Skripsi/spam_svm/chromedriver.exe')
+    driver = webdriver.Chrome(service=s,options=option)
     driver.get(url)
     wait = WebDriverWait(driver,25)
+    
+   
+
     time.sleep(1)
     if semua == True:
         prev_h = 0
