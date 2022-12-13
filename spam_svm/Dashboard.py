@@ -193,7 +193,12 @@ def ambil_komen(url, angka, semua):
     option.add_argument("--disable-web-security")
     option.add_argument("--allow-running-insecure-content")
     option.add_argument("--mute-audio")
-    
+    option.add_argument("--headless")
+    option.add_argument("--no-sandbox")
+    option.add_argument("--disable-dev-shm-usage")
+    option.add_argument("--disable-features=NetworkService")
+    option.add_argument("--window-size=1920x1080")
+    option.add_argument("--disable-features=VizDisplayCompositor")
     
     option.add_argument("--start-maximized")
 #     option.add_argument('--headless')
