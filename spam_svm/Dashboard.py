@@ -180,14 +180,19 @@ def countPlot(df):
         plt.title("Pie Plot", fontsize=26, color='white')
         st.pyplot(fig)
     
+@st.experimental_singleton
+def get_driver():
+    options = Options()
+    options.add_argument('--disable-gpu')
+    options.add_argument("--mute-audio")
+    options.add_argument('--headless')
+    return webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 
 
 @st.experimental_singleton(show_spinner=False,suppress_st_warning=True)
 def ambil_komen(url, angka, semua):
-    options = Options()
-    options.add_argument("--headless") #headless
-    options.add_argument("--mute-audio")
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()),options=options)
+    
+    driver = get_driver()
     wait = WebDriverWait(driver,20)
     driver.get(url)
     time.sleep(1)
