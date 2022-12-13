@@ -8,7 +8,6 @@ asttokens==2.0.5
 astunparse==1.6.3
 async-generator==1.10
 chromedriver
-chromium
 attrs==22.1.0
 backcall==0.2.0
 beautifulsoup4==4.11.1
