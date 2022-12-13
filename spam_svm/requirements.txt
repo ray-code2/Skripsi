@@ -111,7 +111,7 @@ pexpect==4.8.0
 pickleshare==0.7.5
 Pillow==9.3.0
 pipreqs==0.4.11
-platformdirs==2.5.2
+platformdirs>=2.6.0
 preshed==3.0.7
 prometheus-client==0.14.1
 prompt-toolkit==3.0.30
