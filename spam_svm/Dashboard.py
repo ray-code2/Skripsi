@@ -24,7 +24,6 @@ from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -202,9 +201,8 @@ def get_driver():
     options.add_argument("--window-size=1920x1080")
     options.add_argument("--disable-features=VizDisplayCompositor")
     options.add_argument("--start-maximized")
-    options.add_argument('--disable-blink-features=AutomationControlled')
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)   
-    return driver
+    options.add_argument('--disable-blink-features=AutomationControlled') 
+    return webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options) 
 @st.experimental_memo(show_spinner=False,suppress_st_warning=True)
 def ambil_komen(url, angka, semua):
     driver = get_driver()
@@ -470,9 +468,7 @@ if __name__ == "__main__":
         else:
             with st.spinner('Dimohon tunggu sebentar...'):
                 time.sleep(2)
-                drive = get_driver()
-                drive.get(link_input)
-#                 ambil_komen(link_input , angka , semua)
+                ambil_komen(link_input , angka , semua)
                 end_time = time.perf_counter()
                 hasil = end_time - start
                 print(f"Waktu Process: {format_timespan(round(hasil,2))}")
