@@ -186,6 +186,11 @@ def countPlot(df):
 
 @st.experimental_memo(show_spinner=False,suppress_st_warning=False)
 def get_driver():
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)   
+    return driver
+@st.experimental_memo(show_spinner=False,suppress_st_warning=False)
+def ambil_komen(_url, _angka, _semua):
+#     Chrome_driver_path = "spam_svm/chromedriver.exe"
     options = Options()
     options.add_argument('--disable-gpu')
     options.add_argument("--test-type")
@@ -203,19 +208,12 @@ def get_driver():
     options.add_argument("--disable-features=VizDisplayCompositor")
     options.add_argument("--start-maximized")
     options.add_argument('--disable-blink-features=AutomationControlled')
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)   
-    return driver
-@st.experimental_memo(show_spinner=False,suppress_st_warning=False)
-def ambil_komen(_url, _angka, _semua):
-#     Chrome_driver_path = "spam_svm/chromedriver.exe"
-    
 #     option.add_argument('--headless')
 #     s=Service('spam_svm/chromedriver.exe')
     driver = get_driver()
 #     service.start()
     driver.get(url)
     wait = WebDriverWait(driver,25)
-    time.sleep(1)
     if semua == True:
         prev_h = 0
         while True:
