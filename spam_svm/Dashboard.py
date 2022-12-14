@@ -185,7 +185,7 @@ def countPlot(df):
         st.pyplot(fig)
 
 @st.experimental_memo(show_spinner=False,suppress_st_warning=False)
-def get_driver():
+def get_driver(options):
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)   
     return driver
 @st.experimental_memo(show_spinner=False,suppress_st_warning=False)
@@ -210,8 +210,8 @@ def ambil_komen(_url, _angka, _semua):
     options.add_argument('--disable-blink-features=AutomationControlled')
 #     option.add_argument('--headless')
 #     s=Service('spam_svm/chromedriver.exe')
-    driver = get_driver()
-#     service.start()
+    driver = get_driver(options)
+    service.start()
     driver.get(url)
     wait = WebDriverWait(driver,25)
     if semua == True:
