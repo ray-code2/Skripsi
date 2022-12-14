@@ -209,4 +209,4 @@ XlsxWriter==3.0.3
 xlwt==0.7.2
 yarg==0.1.9
 zipp==3.10.0
-sbase==4.9.7
+seleniumbase==4.9.7
