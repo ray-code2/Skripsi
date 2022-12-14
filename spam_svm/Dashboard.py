@@ -202,7 +202,9 @@ def get_driver():
     options.add_argument("--disable-features=VizDisplayCompositor")
     options.add_argument("--start-maximized")
     options.add_argument('--disable-blink-features=AutomationControlled') 
-    return webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options) 
+    drive = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options) 
+    service.start()
+    return drive
 @st.experimental_memo(show_spinner=False,suppress_st_warning=True)
 def ambil_komen(url, angka, semua):
     driver = get_driver()
