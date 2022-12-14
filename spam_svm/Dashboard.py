@@ -185,12 +185,7 @@ def countPlot(df):
         st.pyplot(fig)
 
 @st.experimental_memo(show_spinner=False,suppress_st_warning=True)
-def get_driver(_options):
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=_options)   
-    return driver
-@st.experimental_memo(show_spinner=False,suppress_st_warning=True)
-def ambil_komen(url, angka, semua):
-#     Chrome_driver_path = "spam_svm/chromedriver.exe"
+def get_driver():
     options = Options()
     options.add_argument('--disable-gpu')
     options.add_argument("--test-type")
@@ -208,10 +203,12 @@ def ambil_komen(url, angka, semua):
     options.add_argument("--disable-features=VizDisplayCompositor")
     options.add_argument("--start-maximized")
     options.add_argument('--disable-blink-features=AutomationControlled')
-#     option.add_argument('--headless')
-#     s=Service('spam_svm/chromedriver.exe')
-    driver = get_driver(options)
-    service.start()
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=_options)   
+    return driver
+@st.experimental_memo(show_spinner=False,suppress_st_warning=True)
+def ambil_komen(url, angka, semua):
+    driver = get_driver()
+#     service.start()
     driver.get(url)
     wait = WebDriverWait(driver,25)
     if semua == True:
@@ -473,7 +470,9 @@ if __name__ == "__main__":
         else:
             with st.spinner('Dimohon tunggu sebentar...'):
                 time.sleep(2)
-                ambil_komen(link_input , angka , semua)
+                drive = get_driver()
+                drive.get(link_input)
+#                 ambil_komen(link_input , angka , semua)
                 end_time = time.perf_counter()
                 hasil = end_time - start
                 print(f"Waktu Process: {format_timespan(round(hasil,2))}")
