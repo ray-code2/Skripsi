@@ -184,10 +184,8 @@ def countPlot(df):
         plt.title("Pie Plot", fontsize=26, color='white')
         st.pyplot(fig)
 
-
 @st.experimental_memo(show_spinner=False,suppress_st_warning=False)
-def ambil_komen(_url, _angka, _semua):
-#     Chrome_driver_path = "spam_svm/chromedriver.exe"
+def get_driver():
     options = Options()
     options.add_argument('--disable-gpu')
     options.add_argument("--test-type")
@@ -197,23 +195,26 @@ def ambil_komen(_url, _angka, _semua):
     options.add_argument("--allow-running-insecure-content")
     options.add_argument("--mute-audio")
     options.add_argument("--headless")
+    options.add_argument("--headless2")
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
     options.add_argument("--disable-features=NetworkService")
     options.add_argument("--window-size=1920x1080")
     options.add_argument("--disable-features=VizDisplayCompositor")
-    
     options.add_argument("--start-maximized")
-#     option.add_argument('--headless')
     options.add_argument('--disable-blink-features=AutomationControlled')
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)   
+    return driver
+@st.experimental_memo(show_spinner=False,suppress_st_warning=False)
+def ambil_komen(_url, _angka, _semua):
+#     Chrome_driver_path = "spam_svm/chromedriver.exe"
+    
+#     option.add_argument('--headless')
 #     s=Service('spam_svm/chromedriver.exe')
-    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()),options=options)
+    driver = get_driver()
 #     service.start()
     driver.get(url)
     wait = WebDriverWait(driver,25)
-    
-   
-
     time.sleep(1)
     if semua == True:
         prev_h = 0
