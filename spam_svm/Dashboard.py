@@ -185,8 +185,8 @@ def countPlot(df):
         st.pyplot(fig)
 
 @st.experimental_memo(show_spinner=False,suppress_st_warning=True)
-def get_driver(options):
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)   
+def get_driver(_options):
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=_options)   
     return driver
 @st.experimental_memo(show_spinner=False,suppress_st_warning=True)
 def ambil_komen(url, angka, semua):
