@@ -185,7 +185,7 @@ def countPlot(df):
         st.pyplot(fig)
 
 
-@st.experimental_memo(show_spinner=False,suppress_st_warning=True)
+@st.experimental_memo(persist="disk")
 def ambil_komen(url, angka, semua):
 #     Chrome_driver_path = "spam_svm/chromedriver.exe"
     options = Options()
