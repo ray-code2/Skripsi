@@ -185,8 +185,8 @@ def countPlot(df):
         st.pyplot(fig)
 
 
-@st.experimental_memo(show_spinner=False,suppress_st_warning=True)
-def ambil_komen(_url, _angka, semua):
+@st.experimental_memo(show_spinner=False,suppress_st_warning=False)
+def ambil_komen(_url, _angka, _semua):
 #     Chrome_driver_path = "spam_svm/chromedriver.exe"
     options = Options()
     options.add_argument('--disable-gpu')
