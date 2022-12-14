@@ -185,7 +185,7 @@ def countPlot(df):
         st.pyplot(fig)
 
 @st.experimental_memo(show_spinner=False,suppress_st_warning=False)
-def get_driver(options):
+def get_driver(_options):
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)   
     return driver
 @st.experimental_memo(show_spinner=False,suppress_st_warning=False)
