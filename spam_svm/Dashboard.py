@@ -24,7 +24,7 @@ from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
-
+from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -184,11 +184,11 @@ def countPlot(df):
         plt.title("Pie Plot", fontsize=26, color='white')
         st.pyplot(fig)
 
-@st.experimental_memo(show_spinner=False,suppress_st_warning=False)
-def get_driver(_options):
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=_options)   
+@st.experimental_memo(show_spinner=False,suppress_st_warning=True)
+def get_driver(options):
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)   
     return driver
-@st.experimental_memo(show_spinner=False,suppress_st_warning=False)
+@st.experimental_memo(show_spinner=False,suppress_st_warning=True)
 def ambil_komen(url, angka, semua):
 #     Chrome_driver_path = "spam_svm/chromedriver.exe"
     options = Options()
