@@ -140,7 +140,7 @@ def color_df(val):
 
 
 
-@st.experimental_singleton(show_spinner=False,suppress_st_warning=True)
+@st.experimental_memo(show_spinner=False,suppress_st_warning=True)
 def countPlot(df):
     col1,col2 = st.columns([2,2])
     with col1:
@@ -185,7 +185,7 @@ def countPlot(df):
         st.pyplot(fig)
 
 
-@st.experimental_memo
+@st.experimental_memo(show_spinner=False,suppress_st_warning=True)
 def ambil_komen(url, angka, semua):
 #     Chrome_driver_path = "spam_svm/chromedriver.exe"
     options = Options()
@@ -473,7 +473,7 @@ if __name__ == "__main__":
             st.warning('Belum input Link!')
         else:
             with st.spinner('Dimohon tunggu sebentar...'):
-                # time.sleep(1)
+                time.sleep(2)
                 ambil_komen(link_input , angka , semua)
                 end_time = time.perf_counter()
                 hasil = end_time - start
