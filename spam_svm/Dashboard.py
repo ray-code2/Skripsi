@@ -187,30 +187,16 @@ def countPlot(df):
 def get_driver():
     options = Options()
     options.add_argument('--disable-gpu')
-#     options.add_argument("--test-type")
-#     options.add_argument('--log-level=3')
-#     options.add_argument("--start-maximized")
-#     options.add_argument("--disable-web-security")
-#     options.add_argument("--allow-running-insecure-content")
     options.add_argument("--mute-audio")
     options.add_argument("--headless")
-#     options.add_argument("--headless2")
-#     options.add_argument("--no-sandbox")
-#     options.add_argument("--disable-dev-shm-usage")
-#     options.add_argument("--disable-features=NetworkService")
-#     options.add_argument("--window-size=1920x1080")
-#     options.add_argument("--disable-features=VizDisplayCompositor")
-#     options.add_argument("--start-maximized")
-#     options.add_argument('--disable-blink-features=AutomationControlled') 
     drive = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options) 
-    service.start()
     return drive
 @st.experimental_memo(show_spinner=False,suppress_st_warning=True)
 def ambil_komen(url, angka, semua):
     driver = get_driver()
 #     service.start()
     driver.get(url)
-    wait = WebDriverWait(driver,25)
+    wait = WebDriverWait(driver,40)
     if semua == True:
         prev_h = 0
         while True:
