@@ -28,6 +28,19 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+import os, sys
+# /home/appuser/venv/lib/python3.10/site-packages/selenium/webdriver/chrome/webdriver.py
+
+
+@st.experimental_singleton
+def installff():
+  os.system('sbase install ChromeDriver')
+  os.system('ln -s /home/appuser/venv/lib/python3.10/site-packages/seleniumbase/webdriver/chrome/webdriver.py')
+
+_ = installff()
+
+
+
 from bs4 import BeautifulSoup
 import time
 
@@ -200,7 +213,8 @@ def ambil_komen(url, angka, semua):
     option.add_argument("--disable-gpu")
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=option)
     driver.get(url)
-    wait = WebDriverWait(driver,40)
+    time.sleep(5)
+    wait = WebDriverWait(driver,20)
     if semua == True:
         prev_h = 0
         while True:
