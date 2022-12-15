@@ -35,7 +35,7 @@ import os, sys
 @st.experimental_singleton
 def installff():
   os.system('sbase install Chromedriver')
-  os.system('ln -s /home/appuser/venv/lib/python3.10/site-packages/seleniumbase/webdriver/chrome/webdriver.py')
+  os.system('ln -s /home/appuser/venv/lib/python3.10/site-packages/seleniumbase/drivers/chromedriver')
 
 _ = installff()
 
