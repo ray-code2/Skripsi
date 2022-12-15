@@ -201,7 +201,7 @@ def get_driver():
     options.add_argument("--mute-audio")
     options.add_argument("--headless")
     #/home/appuser/venv/lib/python3.10/site-packages/selenium/webdriver/chrome/webdriver.py
-    service = ChromeService(executable_path='/home/appuser/venv/lib/python3.10/site-packages/seleniumbase/drivers/chromedriver')
+    service = ChromeService(executable_path='/home/appuser/venv/lib/python3.10/site-packages/seleniumbase/drivers/chromedriver.exe')
     drive = webdriver.Chrome(service=service, options=options) 
     return drive
 
