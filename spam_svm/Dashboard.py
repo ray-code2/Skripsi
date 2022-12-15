@@ -200,7 +200,7 @@ def get_driver():
     options.add_argument('--disable-gpu')
     options.add_argument("--mute-audio")
     options.add_argument("--headless")
-    service = ChromeService(executable_path='/home/appuser/venv/lib/python3.10/site-packages/seleniumbase/drivers/chromedriver')
+    service = ChromeService(executable_path='/home/appuser/venv/lib/python3.10/site-packages/selenium/webdriver/chrome/webdriver.py')
     drive = webdriver.Chrome(service=service, options=options) 
     return drive
 
