@@ -59,10 +59,10 @@ nltk.download('stopwords')
 from webdriver_manager.core.utils import ChromeType
 
 
-st.set_page_config(
-    page_title="Youtube Spam Detection",
-    page_icon="💬",
-)
+# st.set_page_config(
+#     page_title="Youtube Spam Detection",
+#     page_icon="💬",
+# )
 
 def stopword_removal(words):
     list_stopwords = stopwords.words('indonesian')
@@ -92,15 +92,15 @@ def stemming(comment):
 
     
     
-#Style 
-st.markdown("""
-<style>
-.css-1lsmgbg.egzxvld0 , .css-6x4l1z.edgvbvh3
-{
-    visibility:hidden;
-}
-</style>
-""",unsafe_allow_html=True)
+# #Style 
+# st.markdown("""
+# <style>
+# .css-1lsmgbg.egzxvld0 , .css-6x4l1z.edgvbvh3
+# {
+#     visibility:hidden;
+# }
+# </style>
+# """,unsafe_allow_html=True)
 
 # pilih_menu = st.sidebar.selectbox("Navigasi" ,('Halaman Utama','Halaman Dashboard','Tentang Aplikasi'))
 def trans(komentar):
