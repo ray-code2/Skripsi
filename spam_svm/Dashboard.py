@@ -194,24 +194,24 @@ def installff():
   os.system('ln -s /home/appuser/venv/lib/python3.10/site-packages/seleniumbase/drivers/chromedriver /home/appuser/venv/bin/chromedriver')
 
     
-@st.experimental_memo(show_spinner=False,suppress_st_warning=True)
-def get_driver():
-    options = Options()
-    options.add_argument('--disable-gpu')
-    options.add_argument("--mute-audio")
-    options.add_argument("--headless")
-    #/home/appuser/venv/lib/python3.10/site-packages/selenium/webdriver/chrome/webdriver.py
-#     service = ChromeService(executable_path='/home/appuser/venv/lib/python3.10/site-packages/seleniumbase/drivers/chromedriver.exe')
-    drive = webdriver.Chrome(executable_path='/home/appuser/venv/lib/python3.10/site-packages/seleniumbase/drivers/chromedriver.exe', options=options) 
-    return drive
+# @st.experimental_memo(show_spinner=False,suppress_st_warning=True)
+# def get_driver():
+#     options = Options()
+#     options.add_argument('--disable-gpu')
+#     options.add_argument("--mute-audio")
+#     options.add_argument("--headless")
+#     #/home/appuser/venv/lib/python3.10/site-packages/selenium/webdriver/chrome/webdriver.py
+# #     service = ChromeService(executable_path='/home/appuser/venv/lib/python3.10/site-packages/seleniumbase/drivers/chromedriver.exe')
+#     drive = webdriver.Chrome(executable_path='/home/appuser/venv/lib/python3.10/site-packages/seleniumbase/drivers/chromedriver.exe', options=options) 
+#     return drive
 
-@st.experimental_memo(show_spinner=False,suppress_st_warning=True)
+# @st.experimental_memo(show_spinner=False,suppress_st_warning=True)
 def ambil_komen(url, angka, semua):
     option = Options()
 #     option.add_argument("--headless") #headless
     option.add_argument("--mute-audio")
     option.add_argument("--disable-gpu")
-    driver = get_driver()
+    driver = webdriver.Chrome(executable_path='/home/appuser/venv/lib/python3.10/site-packages/seleniumbase/drivers/chromedriver', options=options) 
     time.sleep(4)
 #     service.start()
     driver.get(url)
