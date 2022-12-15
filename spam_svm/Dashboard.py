@@ -184,17 +184,21 @@ def countPlot(df):
         st.pyplot(fig)
 
 
-def get_driver():
-    options = Options()
-    options.add_argument('--disable-gpu')
-    options.add_argument("--mute-audio")
-    options.add_argument("--headless")
-    drive = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options) 
-    return drive
+# def get_driver():
+#     options = Options()
+#     options.add_argument('--disable-gpu')
+#     options.add_argument("--mute-audio")
+#     options.add_argument("--headless")
+#     drive = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options) 
+#     return drive
+
 @st.experimental_memo(show_spinner=False,suppress_st_warning=True)
 def ambil_komen(url, angka, semua):
-    driver = get_driver()
-#     service.start()
+    option = Options()
+    option.add_argument("--headless") #headless
+    option.add_argument("--mute-audio")
+    option.add_argument("--disable-gpu")
+    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()),options=option)
     driver.get(url)
     wait = WebDriverWait(driver,40)
     if semua == True:
@@ -282,7 +286,7 @@ def ambil_komen(url, angka, semua):
         for item in range(angka): #angka adalah jumlah iterasi dan per iterasi akan di scrape 20 data
             wait.until(EC.visibility_of_element_located((By.TAG_NAME, "body"))).send_keys(Keys.END)
             # wait.until(EC.element_to_be_clickable((By.XPATH,"//*[@class='input-content' or @class='style-scope' or @class='paper-input-container']")))
-            time.sleep(8) #menunggu 8 detik scroll
+            time.sleep(10) #menunggu 10 detik scroll
         data = []
 
         # for lnk in wait.until(EC.presence_of_all_elements_located((By.XPATH, "//h2[contains(@class, 'yt-simple-endpoint style-scope yt-formatted-string')]/a"))):
