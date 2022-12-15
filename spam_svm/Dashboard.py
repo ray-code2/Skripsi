@@ -21,8 +21,8 @@ from sklearn.preprocessing import LabelEncoder
 #import library ambil data komentar
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.chrome.service import Service
+# from webdriver_manager.chrome import ChromeDriverManager
+# from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
@@ -48,7 +48,7 @@ import joblib
 # https://www.youtube.com/watch?v=EJYK3PtyJLY
 import nltk
 nltk.download('stopwords')
-from webdriver_manager.core.utils import ChromeType
+# from webdriver_manager.core.utils import ChromeType
 
 
 # st.set_page_config(
@@ -209,7 +209,7 @@ def ambil_komen(url, angka, semua):
     option.add_argument("--disable-gpu")
 #     service = Service(executable_path=ChromeDriverManager().install())
     driver = webdriver.Chrome(options=option)
-    service.start()
+#     service.start()
     driver.get(url)
     time.sleep(5)
     wait = WebDriverWait(driver,20)
