@@ -211,7 +211,7 @@ def ambil_komen(url, angka, semua):
 #     option.add_argument("--headless") #headless
     option.add_argument("--mute-audio")
     option.add_argument("--disable-gpu")
-    service = Service(ChromeDriverManager().install())
+    service = Service(executable_path=ChromeDriverManager().install())
     driver = webdriver.Chrome(service=service, options=option)
     service.start()
     driver.get(url)
