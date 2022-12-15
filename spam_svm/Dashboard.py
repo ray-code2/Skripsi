@@ -213,6 +213,7 @@ def ambil_komen(url, angka, semua):
     option.add_argument("--disable-gpu")
     service = Service(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=service, options=option)
+    service.start()
     driver.get(url)
     time.sleep(5)
     wait = WebDriverWait(driver,20)
