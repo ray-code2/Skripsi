@@ -47,7 +47,6 @@ import joblib
 
 # https://www.youtube.com/watch?v=EJYK3PtyJLY
 import nltk
-nltk.download('stopwords')
 # from webdriver_manager.core.utils import ChromeType
 
 
@@ -211,7 +210,8 @@ def ambil_komen(url, angka, semua):
 #     option.add_argument("--headless") #headless
     option.add_argument("--mute-audio")
     option.add_argument("--disable-gpu")
-    driver = webdriver.Chrome(executable_path='/home/appuser/venv/lib/python3.10/site-packages/seleniumbase/drivers/chromedriver', options=option) 
+    service = ChromeService(executable_path='/home/appuser/venv/lib/python3.10/site-packages/seleniumbase/drivers/chromedriver.exe')
+    driver = webdriver.Chrome(service = service, options=option) 
     time.sleep(4)
 #     service.start()
     driver.get(url)
@@ -420,6 +420,7 @@ def ambil_komen(url, angka, semua):
 #code utama
 if __name__ == "__main__":
     _ = installff()
+    nltk.download('stopwords')
     le = LabelEncoder()
     path = open(r'spam_svm/data.csv')
     df = pd.read_csv(path)
