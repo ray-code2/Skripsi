@@ -183,7 +183,7 @@ def countPlot(df):
         plt.title("Pie Plot", fontsize=26, color='white')
         st.pyplot(fig)
 
-@st.experimental_memo(show_spinner=False,suppress_st_warning=True)
+
 def get_driver():
     options = Options()
     options.add_argument('--disable-gpu')
