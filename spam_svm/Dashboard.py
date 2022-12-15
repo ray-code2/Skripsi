@@ -193,13 +193,16 @@ def installff():
   os.system('sbase install Chromedriver latest')
   os.system('ln -s /home/appuser/venv/lib/python3.10/site-packages/seleniumbase/drivers/chromedriver')
 
-# def get_driver():
-#     options = Options()
-#     options.add_argument('--disable-gpu')
-#     options.add_argument("--mute-audio")
-#     options.add_argument("--headless")
-#     drive = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options) 
-#     return drive
+    
+@st.experimental_memo(show_spinner=False,suppress_st_warning=True)
+def get_driver():
+    options = Options()
+    options.add_argument('--disable-gpu')
+    options.add_argument("--mute-audio")
+    options.add_argument("--headless")
+    service = ChromeService(executable_path='/home/appuser/venv/lib/python3.10/site-packages/seleniumbase/drivers/chromedriver')
+    drive = webdriver.Chrome(service=service, options=options) 
+    return drive
 
 @st.experimental_memo(show_spinner=False,suppress_st_warning=True)
 def ambil_komen(url, angka, semua):
@@ -207,11 +210,10 @@ def ambil_komen(url, angka, semua):
 #     option.add_argument("--headless") #headless
     option.add_argument("--mute-audio")
     option.add_argument("--disable-gpu")
-    service = ChromeService(executable_path='/home/appuser/venv/lib/python3.10/site-packages/seleniumbase/drivers/chromedriver')
-    driver = webdriver.Chrome(service= service ,service_log_path='/home/appuser/venv/lib/python3.10/site-packages/seleniumbase/drivers/chromedriver',options=option)
+    driver = get_driver()
+    time.sleep(4)
 #     service.start()
     driver.get(url)
-    time.sleep(5)
     wait = WebDriverWait(driver,20)
     if semua == True:
         prev_h = 0
