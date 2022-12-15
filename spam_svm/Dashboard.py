@@ -21,8 +21,8 @@ from sklearn.preprocessing import LabelEncoder
 #import library ambil data komentar
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-# from webdriver_manager.chrome import ChromeDriverManager
-# from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
@@ -207,8 +207,8 @@ def ambil_komen(url, angka, semua):
 #     option.add_argument("--headless") #headless
     option.add_argument("--mute-audio")
     option.add_argument("--disable-gpu")
-#     service = Service(executable_path=ChromeDriverManager().install())
-    driver = webdriver.Chrome(executable_path='/home/appuser/venv/lib/python3.10/site-packages/seleniumbase/drivers/chromedriver',service_log_path='/home/appuser/venv/lib/python3.10/site-packages/seleniumbase/drivers/chromedriver',options=option)
+    service = Service(executable_path='/home/appuser/venv/lib/python3.10/site-packages/seleniumbase/drivers/chromedriver')
+    driver = webdriver.Chrome(service= service ,service_log_path='/home/appuser/venv/lib/python3.10/site-packages/seleniumbase/drivers/chromedriver',options=option)
 #     service.start()
     driver.get(url)
     time.sleep(5)
