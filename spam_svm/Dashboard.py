@@ -32,14 +32,6 @@ import os, sys
 # /home/appuser/venv/lib/python3.10/site-packages/selenium/webdriver/chrome/webdriver.py
 
 
-@st.experimental_singleton
-def installff():
-  os.system('sbase install Chromedriver')
-  os.system('ln -s /home/appuser/venv/lib/python3.10/site-packages/seleniumbase/drivers/chromedriver')
-
-_ = installff()
-
-
 
 from bs4 import BeautifulSoup
 import time
@@ -196,6 +188,10 @@ def countPlot(df):
         plt.title("Pie Plot", fontsize=26, color='white')
         st.pyplot(fig)
 
+@st.experimental_singleton
+def installff():
+  os.system('sbase install Chromedriver latest')
+  os.system('ln -s /home/appuser/venv/lib/python3.10/site-packages/seleniumbase/drivers/chromedriver /home/appuser/venv/bin/chromedriver')
 
 # def get_driver():
 #     options = Options()
@@ -420,6 +416,7 @@ def ambil_komen(url, angka, semua):
 
 #code utama
 if __name__ == "__main__":
+    _ = installff()
     le = LabelEncoder()
     path = open(r'spam_svm/data.csv')
     df = pd.read_csv(path)
