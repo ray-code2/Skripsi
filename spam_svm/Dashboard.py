@@ -194,11 +194,11 @@ def countPlot(df):
 
 @st.experimental_memo(show_spinner=False,suppress_st_warning=True)
 def ambil_komen(url, angka, semua):
-    option = Options()
-    option.add_argument("--headless") #headless
-    option.add_argument("--mute-audio")
-    option.add_argument("--disable-gpu")
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()),options=option)
+#     option = Options()
+#     option.add_argument("--headless") #headless
+#     option.add_argument("--mute-audio")
+#     option.add_argument("--disable-gpu")
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
     driver.get(url)
     wait = WebDriverWait(driver,40)
     if semua == True:
