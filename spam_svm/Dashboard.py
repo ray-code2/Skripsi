@@ -205,7 +205,7 @@ def get_driver():
     drive = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options) 
     service.start()
     return drive
-# @st.experimental_memo(show_spinner=False,suppress_st_warning=True)
+@st.experimental_memo(show_spinner=False,suppress_st_warning=True)
 def ambil_komen(url, angka, semua):
     driver = get_driver()
 #     service.start()
