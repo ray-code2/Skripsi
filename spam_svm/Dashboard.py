@@ -191,7 +191,7 @@ def countPlot(df):
 @st.experimental_singleton
 def installff():
   os.system('sbase install Chromedriver latest')
-  os.system('ln -s /home/appuser/venv/lib/python3.10/site-packages/seleniumbase/drivers/chromedriver /home/appuser/venv/bin/chromedriver')
+  os.system('ln -s /home/appuser/venv/lib/python3.10/site-packages/seleniumbase/drivers/chromedriver')
 
 # def get_driver():
 #     options = Options()
@@ -208,7 +208,7 @@ def ambil_komen(url, angka, semua):
     option.add_argument("--mute-audio")
     option.add_argument("--disable-gpu")
 #     service = Service(executable_path=ChromeDriverManager().install())
-    driver = webdriver.Chrome(options=option)
+    driver = webdriver.Chrome(executable_path='/home/appuser/venv/lib/python3.10/site-packages/seleniumbase/drivers/chromedriver',options=option)
 #     service.start()
     driver.get(url)
     time.sleep(5)
