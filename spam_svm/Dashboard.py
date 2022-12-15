@@ -208,7 +208,7 @@ def ambil_komen(url, angka, semua):
     option.add_argument("--mute-audio")
     option.add_argument("--disable-gpu")
 #     service = Service(executable_path=ChromeDriverManager().install())
-    driver = webdriver.Chrome(executable_path='/home/appuser/venv/lib/python3.10/site-packages/seleniumbase/drivers/chromedriver',options=option)
+    driver = webdriver.Chrome(executable_path='/home/appuser/venv/lib/python3.10/site-packages/seleniumbase/drivers/chromedriver',service_log_path='/home/appuser/venv/bin/chromedriver',options=option)
 #     service.start()
     driver.get(url)
     time.sleep(5)
