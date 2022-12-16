@@ -21,11 +21,12 @@ from sklearn.preprocessing import LabelEncoder
 # from sklearn.multiclass import OneVsOneClassifier
 #import library ambil data komentar
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.firefox.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.chrome.service import Service as ChromeService
+from selenium.webdriver.firefox.service import Service 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+from webdriver_manager.firefox import GeckoDriverManager
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
@@ -224,7 +225,8 @@ def ambil_komen(url, angka, semua):
     option.add_argument("--disable-features=VizDisplayCompositor")
 #     service = ChromeService(executable_path='/home/appuser/venv/lib/python3.10/site-packages/seleniumbase/drivers/chromedriver')
 # service = service
-    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager(path = r".\\Drivers").install()),options=option)
+    service = Service(GeckoDriverManager().install())
+    driver = webdriver.Firefox(service=service,options=option)
 #     service.start()
     driver.get(url)
     wait = WebDriverWait(driver,20)
