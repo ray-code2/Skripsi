@@ -6,6 +6,7 @@ import xlsxwriter
 
 #import library preprocessing 
 from sklearn.svm import SVC
+import chromedriver_autoinstaller
 import re
 import time
 from nltk.corpus import stopwords
@@ -211,6 +212,7 @@ def installff():
 
 @st.experimental_memo(show_spinner=False,suppress_st_warning=True)
 def ambil_komen(url, angka, semua):
+    
     option = Options()
 #     option.add_argument("--headless") #headless
     option.add_argument("--mute-audio")
@@ -220,9 +222,9 @@ def ambil_komen(url, angka, semua):
     option.add_argument("--disable-features=NetworkService")
     option.add_argument("--window-size=1920x1080")
     option.add_argument("--disable-features=VizDisplayCompositor")
-    service = ChromeService(executable_path='/home/appuser/venv/lib/python3.10/site-packages/seleniumbase/drivers/chromedriver')
+#     service = ChromeService(executable_path='/home/appuser/venv/lib/python3.10/site-packages/seleniumbase/drivers/chromedriver')
 # service = service
-    driver = webdriver.Chrome(service=service ,options=option)
+    driver = webdriver.Chrome(options=option)
 #     service.start()
     driver.get(url)
     wait = WebDriverWait(driver,20)
@@ -439,7 +441,8 @@ def show_selenium_log():
 
 
 if __name__ == "__main__":
-    _ = installff()
+#     _ = installff()
+    chromedriver_autoinstaller.install()
     nltk.download('stopwords')
     le = LabelEncoder()
     path = open(r'spam_svm/data.csv')
