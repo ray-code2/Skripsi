@@ -192,8 +192,8 @@ def countPlot(df):
 
 @st.experimental_singleton
 def installff():
-  os.system('sbase install Chromedriver latest')
-  os.system('ln -s /home/appuser/venv/lib/python3.10/site-packages/seleniumbase/drivers/chromedriver')
+  os.system('sbase install geckodriver latest')
+  os.system('ln -s /home/appuser/venv/lib/python3.10/site-packages/seleniumbase/drivers/geckodriver')
 
     
 # @st.experimental_memo(show_spinner=False,suppress_st_warning=True)
@@ -435,15 +435,8 @@ def ambil_komen(url, angka, semua):
 #code utama
 
 
-def show_selenium_log():
-    if os.path.exists('selenium.log'):
-        with open('selenium.log') as f:
-            content = f.read()
-            st.code(content)
-
-
 if __name__ == "__main__":
-#     _ = installff()
+    _ = installff()
     nltk.download('stopwords')
     le = LabelEncoder()
     path = open(r'spam_svm/data.csv')
