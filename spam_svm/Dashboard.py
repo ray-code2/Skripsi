@@ -448,7 +448,7 @@ if __name__ == "__main__":
     print(classification_report(y_test,y_pred))
 
     st.markdown(" ## Aplikasi Deteksi Komentar Spam Youtube dengan Metode SVM Berbasis Web")
-    link_input = st.text_input('Input link dari Video Youtube: ','')
+    link_input = st.text_input('Input link dari Video Youtube: ')
     angka = 0
     pilih = st.sidebar.number_input('berapa banyak komentar yang mau di klasifikasi dari video tersebut?',min_value=0,max_value=500,step=100)
     semua = st.sidebar.checkbox('Semua Komentar')
