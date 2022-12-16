@@ -222,7 +222,7 @@ def ambil_komen(url, angka, semua):
     option.add_argument("--disable-features=VizDisplayCompositor")
     service = ChromeService(executable_path='/home/appuser/venv/lib/python3.10/site-packages/seleniumbase/drivers/chromedriver')
 # service = service
-    driver = webdriver.Chrome(options=option,service=service)
+    driver = webdriver.Chrome(service=service ,options=option)
 #     service.start()
     driver.get(url)
     wait = WebDriverWait(driver,20)
