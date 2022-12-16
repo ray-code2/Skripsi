@@ -440,7 +440,6 @@ def show_selenium_log():
 
 if __name__ == "__main__":
     _ = installff()
-    delete_selenium_log()
     nltk.download('stopwords')
     le = LabelEncoder()
     path = open(r'spam_svm/data.csv')
