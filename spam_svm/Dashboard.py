@@ -210,6 +210,11 @@ def ambil_komen(url, angka, semua):
 #     option.add_argument("--headless") #headless
     option.add_argument("--mute-audio")
     option.add_argument("--disable-gpu")
+    option.add_argument("--no-sandbox")
+    option.add_argument("--disable-dev-shm-usage")
+    option.add_argument("--disable-features=NetworkService")
+    option.add_argument("--window-size=1920x1080")
+    option.add_argument("--disable-features=VizDisplayCompositor")
     service = ChromeService(executable_path='/home/appuser/venv/lib/python3.10/site-packages/seleniumbase/drivers/chromedriver')
     driver = webdriver.Chrome(service = service, options=option,service_log_path='/home/appuser/venv/lib/python3.10/site-packages/selenium/webdriver/common/service.py') 
     time.sleep(4)
@@ -308,7 +313,7 @@ def ambil_komen(url, angka, semua):
         #     data.append(lnk.text)
         #     print(lnk)
 
-        for comment in wait.until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, "#comment #content-text "))):
+        for comment in wait.until(lambda x: x.presence_of_all_elements_located((By.CSS_SELECTOR, "#comment #content-text "))):
             data.append(comment.text)
 
             # print(comment.get_attribute('href'))
@@ -316,7 +321,7 @@ def ambil_komen(url, angka, semua):
             # //a[@href] this works but not link in the comment!
             # //div[@id='comment-content']//a[@href] #ini bisa!
 
-        elems = driver.find_elements(By.XPATH,"//div[@id='comment-content']//a[@href]")
+        elems = wait.until(lambda x: x.find_elements(By.XPATH,"//div[@id='comment-content']//a[@href]"))
         for elem in elems:
             print(elem.get_attribute("href"))
             data.append(elem.get_attribute("href"))
