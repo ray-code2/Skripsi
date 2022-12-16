@@ -191,7 +191,7 @@ def countPlot(df):
 @st.experimental_singleton
 def installff():
   os.system('sbase install Chromedriver latest')
-  os.system('ln -s /home/appuser/venv/lib/python3.10/site-packages/seleniumbase/drivers/chromedriver /home/appuser/venv/bin/chromedriver')
+  os.system('ln -s /home/appuser/venv/lib/python3.10/site-packages/seleniumbase/drivers/chromedriver')
 
     
 # @st.experimental_memo(show_spinner=False,suppress_st_warning=True)
@@ -224,7 +224,7 @@ def ambil_komen(url, angka, semua):
     option.add_argument("--disable-features=VizDisplayCompositor")
 #     service = ChromeService(executable_path='/home/appuser/venv/lib/python3.10/site-packages/seleniumbase/drivers/chromedriver')
 # service = service
-    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager(path = r"/home/appuser/venv/lib/python3.10/site-packages/seleniumbase/drivers/chromedriver").install()),options=option)
+    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager(path = r"/chromedriver").install()),options=option)
 #     service.start()
     driver.get(url)
     wait = WebDriverWait(driver,20)
@@ -309,7 +309,6 @@ def ambil_komen(url, angka, semua):
         
 
     else:
-        time.sleep(2) 
         for item in range(angka): #angka adalah jumlah iterasi dan per iterasi akan di scrape 20 data
             wait.until(EC.visibility_of_element_located((By.TAG_NAME, "body"))).send_keys(Keys.END)
             # wait.until(EC.element_to_be_clickable((By.XPATH,"//*[@class='input-content' or @class='style-scope' or @class='paper-input-container']")))
@@ -320,7 +319,7 @@ def ambil_komen(url, angka, semua):
         #     data.append(lnk.text)
         #     print(lnk)
 
-        for comment in wait.until(lambda x: x.presence_of_all_elements_located((By.CSS_SELECTOR, "#comment #content-text "))):
+        for comment in wait.until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, "#comment #content-text "))):
             data.append(comment.text)
 
             # print(comment.get_attribute('href'))
@@ -441,7 +440,7 @@ def show_selenium_log():
 
 
 if __name__ == "__main__":
-#     _ = installff()
+    _ = installff()
     nltk.download('stopwords')
     le = LabelEncoder()
     path = open(r'spam_svm/data.csv')
