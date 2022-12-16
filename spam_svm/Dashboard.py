@@ -204,6 +204,11 @@ def installff():
 #     drive = webdriver.Chrome(executable_path='/home/appuser/venv/lib/python3.10/site-packages/seleniumbase/drivers/chromedriver.exe', options=options) 
 #     return drive
 
+
+def delete_selenium_log():
+    if os.path.exists('selenium.log'):
+        os.remove('selenium.log')
+
 @st.experimental_memo(show_spinner=False,suppress_st_warning=True)
 def ambil_komen(url, angka, semua):
     option = Options()
@@ -215,8 +220,9 @@ def ambil_komen(url, angka, semua):
     option.add_argument("--disable-features=NetworkService")
     option.add_argument("--window-size=1920x1080")
     option.add_argument("--disable-features=VizDisplayCompositor")
-    service = ChromeService(executable_path='/home/appuser/venv/lib/python3.10/site-packages/seleniumbase/drivers/chromedriver')
-    driver = webdriver.Chrome(service = service, options=option,service_log_path='/home/appuser/venv/lib/python3.10/site-packages/selenium/webdriver/common/service.py') 
+#     service = ChromeService(executable_path='/home/appuser/venv/lib/python3.10/site-packages/seleniumbase/drivers/chromedriver')
+# service = service
+    driver = webdriver.Chrome(options=option,service_log_path='selenium.log') 
     time.sleep(4)
 #     service.start()
     driver.get(url)
@@ -424,8 +430,18 @@ def ambil_komen(url, angka, semua):
     #     st.info('Data tidak mengandung tautan!', icon="ℹ️")
 
 #code utama
+
+
+def show_selenium_log():
+    if os.path.exists('selenium.log'):
+        with open('selenium.log') as f:
+            content = f.read()
+            st.code(content)
+
+
 if __name__ == "__main__":
     _ = installff()
+    delete_selenium_log()
     nltk.download('stopwords')
     le = LabelEncoder()
     path = open(r'spam_svm/data.csv')
@@ -483,10 +499,14 @@ if __name__ == "__main__":
         else:
             with st.spinner('Dimohon tunggu sebentar...'):
                 time.sleep(2)
-                ambil_komen(link_input , angka , semua)
+                
+                result = ambil_komen(link_input , angka , semua)
                 end_time = time.perf_counter()
+                
                 hasil = end_time - start
+                st.info(f'Result -> {result}')
                 print(f"Waktu Process: {format_timespan(round(hasil,2))}")
+                show_selenium_log()
                 # st.success('Selesai')
 
 
