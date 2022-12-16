@@ -6,6 +6,7 @@ import xlsxwriter
 
 #import library preprocessing 
 from sklearn.svm import SVC
+from selenium_firefox import Firefox
 
 import re
 import time
@@ -21,6 +22,7 @@ from sklearn.preprocessing import LabelEncoder
 # from sklearn.multiclass import OneVsOneClassifier
 #import library ambil data komentar
 from selenium import webdriver
+from selenium.webdriver import FirefoxOptions
 from selenium.webdriver.firefox.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.firefox.service import Service 
@@ -214,7 +216,7 @@ def installff():
 @st.experimental_memo(show_spinner=False,suppress_st_warning=True)
 def ambil_komen(url, angka, semua):
 #     chromedriver_autoinstaller.install()
-    option = Options()
+    option = FirefoxOptions()
 #     option.add_argument("--headless") #headless
     option.add_argument("--mute-audio")
     option.add_argument("--disable-gpu")
@@ -442,7 +444,7 @@ def show_selenium_log():
 
 
 if __name__ == "__main__":
-    _ = installff()
+#     _ = installff()
     nltk.download('stopwords')
     le = LabelEncoder()
     path = open(r'spam_svm/data.csv')
