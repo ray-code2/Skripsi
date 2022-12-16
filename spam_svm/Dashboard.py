@@ -7,6 +7,7 @@ import xlsxwriter
 #import library preprocessing 
 from sklearn.svm import SVC
 import chromedriver_autoinstaller
+
 import re
 import time
 from nltk.corpus import stopwords
@@ -212,7 +213,7 @@ def installff():
 
 @st.experimental_memo(show_spinner=False,suppress_st_warning=True)
 def ambil_komen(url, angka, semua):
-    
+    chromedriver_autoinstaller.install()
     option = Options()
 #     option.add_argument("--headless") #headless
     option.add_argument("--mute-audio")
@@ -442,7 +443,6 @@ def show_selenium_log():
 
 if __name__ == "__main__":
 #     _ = installff()
-    chromedriver_autoinstaller.install()
     nltk.download('stopwords')
     le = LabelEncoder()
     path = open(r'spam_svm/data.csv')
