@@ -204,7 +204,7 @@ def installff():
 #     drive = webdriver.Chrome(executable_path='/home/appuser/venv/lib/python3.10/site-packages/seleniumbase/drivers/chromedriver.exe', options=options) 
 #     return drive
 
-# @st.experimental_memo(show_spinner=False,suppress_st_warning=True)
+@st.experimental_memo(show_spinner=False,suppress_st_warning=True)
 def ambil_komen(url, angka, semua):
     option = Options()
 #     option.add_argument("--headless") #headless
