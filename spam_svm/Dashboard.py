@@ -216,6 +216,7 @@ def installff():
 def ambil_komen(url, angka, semua):
 #     chromedriver_autoinstaller.install()
     option = Options()
+    option.binary_location = r'/home/appuser/.wdm/drivers/geckodriver/linux64/0.32/geckodriver'
 #     option.add_argument("--headless") #headless
     option.add_argument("--mute-audio")
     option.add_argument("--disable-gpu")
