@@ -330,6 +330,7 @@ def ambil_komen(url, angka, semua):
         title_text_div = soup.select_one('#container h1')
         title = title_text_div and title_text_div.text
         # st.session_state['judul'] = title
+        driver.quit()
         a = dataframe['Komentar']
         # st.session_state['Sebelum'] = a
         # a.to_csv('data_scrape.txt',sep='\t',index=False)
