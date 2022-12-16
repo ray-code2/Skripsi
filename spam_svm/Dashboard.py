@@ -205,9 +205,9 @@ def installff():
 #     return drive
 
 
-def delete_selenium_log():
-    if os.path.exists('selenium.log'):
-        os.remove('selenium.log')
+# def delete_selenium_log():
+#     if os.path.exists('selenium.log'):
+#         os.remove('selenium.log')
 
 @st.experimental_memo(show_spinner=False,suppress_st_warning=True)
 def ambil_komen(url, angka, semua):
@@ -220,10 +220,9 @@ def ambil_komen(url, angka, semua):
     option.add_argument("--disable-features=NetworkService")
     option.add_argument("--window-size=1920x1080")
     option.add_argument("--disable-features=VizDisplayCompositor")
-#     service = ChromeService(executable_path='/home/appuser/venv/lib/python3.10/site-packages/seleniumbase/drivers/chromedriver')
+    service = ChromeService(executable_path='/home/appuser/venv/lib/python3.10/site-packages/seleniumbase/drivers/chromedriver')
 # service = service
-    driver = webdriver.Chrome(options=option,service_log_path='selenium.log') 
-    time.sleep(4)
+    driver = webdriver.Chrome(options=option,service=service)
 #     service.start()
     driver.get(url)
     wait = WebDriverWait(driver,20)
@@ -487,7 +486,6 @@ if __name__ == "__main__":
     else:
         angka = 0
     
-
     get = st.button("Klasifikasi Data")
     start = time.perf_counter()
     if get:
@@ -498,15 +496,10 @@ if __name__ == "__main__":
             st.warning('Belum input Link!')
         else:
             with st.spinner('Dimohon tunggu sebentar...'):
-                time.sleep(2)
-                
-                result = ambil_komen(link_input , angka , semua)
+                ambil_komen(link_input , angka , semua)
                 end_time = time.perf_counter()
-                
                 hasil = end_time - start
-                st.info(f'Result -> {result}')
                 print(f"Waktu Process: {format_timespan(round(hasil,2))}")
-                show_selenium_log()
                 # st.success('Selesai')
 
 
