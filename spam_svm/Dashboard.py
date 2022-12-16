@@ -6,7 +6,6 @@ import xlsxwriter
 
 #import library preprocessing 
 from sklearn.svm import SVC
-import chromedriver_autoinstaller
 
 import re
 import time
@@ -213,7 +212,7 @@ def installff():
 
 @st.experimental_memo(show_spinner=False,suppress_st_warning=True)
 def ambil_komen(url, angka, semua):
-    chromedriver_autoinstaller.install()
+#     chromedriver_autoinstaller.install()
     option = Options()
 #     option.add_argument("--headless") #headless
     option.add_argument("--mute-audio")
@@ -225,7 +224,7 @@ def ambil_komen(url, angka, semua):
     option.add_argument("--disable-features=VizDisplayCompositor")
 #     service = ChromeService(executable_path='/home/appuser/venv/lib/python3.10/site-packages/seleniumbase/drivers/chromedriver')
 # service = service
-    driver = webdriver.Chrome(options=option)
+    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()),options=option)
 #     service.start()
     driver.get(url)
     wait = WebDriverWait(driver,20)
