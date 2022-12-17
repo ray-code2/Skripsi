@@ -215,13 +215,14 @@ def installff():
 
 @st.experimental_memo(show_spinner=False,suppress_st_warning=True)
 def ambil_komen(url, angka, semua):
+    
 #     chromedriver_autoinstaller.install()
     option = Options()
 #     option.binary = FirefoxBinary(r'/Applications/Firefox.app/Contents/MacOS/firefox')
     option.add_argument("--headless") #headless
     option.add_argument("--mute-audio")
     option.add_argument("--disable-gpu")
-    option.binary_location = r"C:\Program Files\Mozilla Firefox\firefox.exe"
+#     option.binary_location = r"C:\Program Files\Mozilla Firefox\firefox.exe"
 #     option.add_argument("--no-sandbox")
 #     option.add_argument("--disable-dev-shm-usage")
 #     option.add_argument("--disable-features=NetworkService")
@@ -230,7 +231,8 @@ def ambil_komen(url, angka, semua):
 #     service = ChromeService(executable_path='/home/appuser/venv/lib/python3.10/site-packages/seleniumbase/drivers/chromedriver')
 # service = service
 #     service = Service(GeckoDriverManager().install())
-    driver = webdriver.Firefox(options=option)
+    service = Service(GeckoDriverManager().install())
+    driver = webdriver.Firefox(options=option, service = service)
 #     service.start()
     driver.get(url)
     wait = WebDriverWait(driver,20)
