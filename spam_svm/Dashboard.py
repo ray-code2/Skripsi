@@ -221,6 +221,7 @@ def ambil_komen(url, angka, semua):
     option.add_argument("--headless") #headless
     option.add_argument("--mute-audio")
     option.add_argument("--disable-gpu")
+    option.binary_location = r"C:\Program Files\Mozilla Firefox\firefox.exe"
 #     option.add_argument("--no-sandbox")
 #     option.add_argument("--disable-dev-shm-usage")
 #     option.add_argument("--disable-features=NetworkService")
