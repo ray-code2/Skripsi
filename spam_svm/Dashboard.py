@@ -194,7 +194,7 @@ def countPlot(df):
 @st.experimental_singleton
 def installff():
   os.system('sbase install geckodriver latest')
-  os.system('ln -s /home/appuser/venv/lib/python3.10/site-packages/seleniumbase/drivers/geckodriver')
+  os.system('ln -s /home/appuser/venv/lib/python3.10/site-packages/seleniumbase/drivers/geckodriver /home/appuser/venv/bin/geckodriver')
 
     
 # @st.experimental_memo(show_spinner=False,suppress_st_warning=True)
