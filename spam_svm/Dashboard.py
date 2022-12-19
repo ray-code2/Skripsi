@@ -7,7 +7,7 @@ import xlsxwriter
 from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 #import library preprocessing 
 from sklearn.svm import SVC
-from selenium_firefox import Firefox
+from selenium.webdriver import FirefoxOptions
 
 import re
 import time
@@ -195,7 +195,8 @@ def countPlot(df):
 def installff():
   os.system('sbase install geckodriver latest')
   os.system('ln -s /home/appuser/venv/lib/python3.10/site-packages/seleniumbase/drivers/geckodriver /home/appuser/venv/bin/geckodriver')
-
+    
+_installff()
     
 # @st.experimental_memo(show_spinner=False,suppress_st_warning=True)
 # def get_driver():
@@ -217,7 +218,7 @@ def installff():
 def ambil_komen(url, angka, semua):
     
 #     chromedriver_autoinstaller.install()
-    option = Options()
+    option = FirefoxOptions()
 #     option.binary = FirefoxBinary(r'/Applications/Firefox.app/Contents/MacOS/firefox')
     option.add_argument("--headless") #headless
     option.add_argument("--mute-audio")
@@ -231,8 +232,8 @@ def ambil_komen(url, angka, semua):
 #     service = ChromeService(executable_path='/home/appuser/venv/lib/python3.10/site-packages/seleniumbase/drivers/chromedriver')
 # service = service
 #     service = Service(GeckoDriverManager().install())
-    service = Service(GeckoDriverManager().install())
-    driver = webdriver.Firefox(options=option, service = service)
+#     service = Service(GeckoDriverManager().install())
+    driver = webdriver.Firefox(options=option)
 #     service.start()
     driver.get(url)
     wait = WebDriverWait(driver,20)
@@ -441,7 +442,7 @@ def ambil_komen(url, angka, semua):
 
 
 if __name__ == "__main__":
-    _ = installff()
+#     _ = installff()
     nltk.download('stopwords')
     le = LabelEncoder()
     path = open(r'spam_svm/data.csv')
