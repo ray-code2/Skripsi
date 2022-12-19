@@ -204,7 +204,7 @@ def get_driver():
     option.add_argument("--headless") #headless
     option.add_argument("--mute-audio")
     option.add_argument("--disable-gpu")
-    return webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=option)
+    return webdriver.Chrome(service=Service(executable_path=ChromeDriverManager().install()), options=option)
     
 # @st.experimental_memo(show_spinner=False,suppress_st_warning=True)
 # def get_driver():
