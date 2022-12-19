@@ -220,7 +220,7 @@ def ambil_komen(url, angka, semua):
 #     chromedriver_autoinstaller.install()
     option = FirefoxOptions()
 #     option.binary = FirefoxBinary(r'/Applications/Firefox.app/Contents/MacOS/firefox')
-#     option.binary_location = r'/home/appuser/venv/lib/python3.10/site-packages/seleniumbase/drivers/geckodriver /home/appuser/venv/bin/geckodriver'
+    option.binary_location = r'/home/appuser/.wdm/drivers/geckodriver/linux64/0.32'
     option.add_argument("--headless") #headless
     option.add_argument("--mute-audio")
     option.add_argument("--disable-gpu")
