@@ -7,7 +7,7 @@ import xlsxwriter
 # from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 #import library preprocessing 
 from sklearn.svm import SVC
-from selenium.webdriver import FirefoxOptions
+# from selenium.webdriver import FirefoxOptions
 
 import re
 import time
@@ -198,13 +198,13 @@ def installff():
     
 # installff()
 
- @st.experimental_singleton
-    def get_driver():
-        option = Options()
-        option.add_argument("--headless") #headless
-        option.add_argument("--mute-audio")
-        option.add_argument("--disable-gpu")
-        return webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=option)
+@st.experimental_singleton
+def get_driver():
+    option = Options()
+    option.add_argument("--headless") #headless
+    option.add_argument("--mute-audio")
+    option.add_argument("--disable-gpu")
+    return webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=option)
     
 # @st.experimental_memo(show_spinner=False,suppress_st_warning=True)
 # def get_driver():
