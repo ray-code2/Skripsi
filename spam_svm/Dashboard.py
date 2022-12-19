@@ -196,7 +196,7 @@ def installff():
   os.system('sbase install geckodriver latest')
   os.system('ln -s /home/appuser/venv/lib/python3.10/site-packages/seleniumbase/drivers/geckodriver /home/appuser/venv/bin/geckodriver')
     
-_installff()
+installff()
     
 # @st.experimental_memo(show_spinner=False,suppress_st_warning=True)
 # def get_driver():
