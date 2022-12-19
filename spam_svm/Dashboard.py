@@ -4,7 +4,7 @@ import pandas as pd
 import numpy as np
 import xlsxwriter
 
-from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
+# from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 #import library preprocessing 
 from sklearn.svm import SVC
 from selenium.webdriver import FirefoxOptions
@@ -23,12 +23,12 @@ from sklearn.preprocessing import LabelEncoder
 # from sklearn.multiclass import OneVsOneClassifier
 #import library ambil data komentar
 from selenium import webdriver
-from selenium.webdriver.firefox.options import Options
+from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.firefox.service import Service 
+from selenium.webdriver.chrome.service import Service 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
-from webdriver_manager.firefox import GeckoDriverManager
+# from webdriver_manager.firefox import GeckoDriverManager
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
@@ -196,7 +196,15 @@ def installff():
   os.system('sbase install geckodriver latest')
   os.system('ln -s /home/appuser/venv/lib/python3.10/site-packages/seleniumbase/drivers/geckodriver /home/appuser/venv/bin/geckodriver')
     
-installff()
+# installff()
+
+ @st.experimental_singleton
+    def get_driver():
+        option = Options()
+        option.add_argument("--headless") #headless
+        option.add_argument("--mute-audio")
+        option.add_argument("--disable-gpu")
+        return webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=option)
     
 # @st.experimental_memo(show_spinner=False,suppress_st_warning=True)
 # def get_driver():
@@ -218,12 +226,12 @@ installff()
 def ambil_komen(url, angka, semua):
     
 #     chromedriver_autoinstaller.install()
-    option = FirefoxOptions()
+#     option = Options()
 #     option.binary = FirefoxBinary(r'/Applications/Firefox.app/Contents/MacOS/firefox')
-    option.binary_location = FirefoxBinary("./firefox/firefox")
-    option.add_argument("--headless") #headless
-    option.add_argument("--mute-audio")
-    option.add_argument("--disable-gpu")
+#     option.binary_location = FirefoxBinary("./firefox/firefox")
+#     option.add_argument("--headless") #headless
+#     option.add_argument("--mute-audio")
+#     option.add_argument("--disable-gpu")
 #     option.binary_location = r"C:\Program Files\Mozilla Firefox\firefox.exe"
 #     option.add_argument("--no-sandbox")
 #     option.add_argument("--disable-dev-shm-usage")
@@ -233,8 +241,8 @@ def ambil_komen(url, angka, semua):
 #     service = ChromeService(executable_path='/home/appuser/venv/lib/python3.10/site-packages/seleniumbase/drivers/chromedriver')
 # service = service
 #     service = Service(GeckoDriverManager().install())
-    serv = Service(GeckoDriverManager().install())
-    driver = webdriver.Firefox(options=option, service = serv )
+#     serv = Service(GeckoDriverManager().install())
+    driver = get_driver()
 #     service.start()
     driver.get(url)
     wait = WebDriverWait(driver,20)
