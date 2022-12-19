@@ -220,7 +220,7 @@ def ambil_komen(url, angka, semua):
 #     chromedriver_autoinstaller.install()
     option = FirefoxOptions()
 #     option.binary = FirefoxBinary(r'/Applications/Firefox.app/Contents/MacOS/firefox')
-    option.binary_location = r'/home/appuser/venv/lib/python3.10/site-packages/seleniumbase/drivers/geckodriver /home/appuser/venv/bin/geckodriver'
+#     option.binary_location = r'/home/appuser/venv/lib/python3.10/site-packages/seleniumbase/drivers/geckodriver /home/appuser/venv/bin/geckodriver'
     option.add_argument("--headless") #headless
     option.add_argument("--mute-audio")
     option.add_argument("--disable-gpu")
@@ -233,8 +233,8 @@ def ambil_komen(url, angka, semua):
 #     service = ChromeService(executable_path='/home/appuser/venv/lib/python3.10/site-packages/seleniumbase/drivers/chromedriver')
 # service = service
 #     service = Service(GeckoDriverManager().install())
-#     service = Service(GeckoDriverManager().install())
-    driver = webdriver.Firefox(options=option)
+    serv = Service(GeckoDriverManager().install())
+    driver = webdriver.Firefox(options=option, service = serv )
 #     service.start()
     driver.get(url)
     wait = WebDriverWait(driver,20)
