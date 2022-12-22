@@ -193,10 +193,9 @@ def countPlot(df):
 
 @st.experimental_memo(show_spinner=False,suppress_st_warning=True)
 def installff():
-  os.system('sbase install chromedriver latest')
+  s = os.system('sbase install chromedriver latest')
   os.system('ln -s /home/appuser/venv/lib/python3.10/site-packages/seleniumbase/drivers/chromedriver /home/appuser/venv/bin/chromedriver')
-    
-
+  return os.fspath(s)
 
 @st.experimental_memo(show_spinner=False,suppress_st_warning=True)
 def get_driver():
