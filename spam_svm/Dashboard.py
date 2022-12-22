@@ -191,19 +191,19 @@ def countPlot(df):
         plt.title("Pie Plot", fontsize=26, color='white')
         st.pyplot(fig)
 
-@st.experimental_memo(show_spinner=False,suppress_st_warning=True)
+@st.experimental_singleton(show_spinner=False,suppress_st_warning=True)
 def installff():
   os.system('sbase install chromedriver latest')
-  os.system('ln -s /home/appuser/venv/lib/python3.10/site-packages/seleniumbase/drivers/chromedriver /home/appuser/venv/bin/chromedriver')
+  return os.system('ln -s /home/appuser/venv/lib/python3.10/site-packages/seleniumbase/drivers/chromedriver /home/appuser/venv/bin/chromedriver')
 
-@st.experimental_memo(show_spinner=False,suppress_st_warning=True)
+@st.experimental_singleton(show_spinner=False,suppress_st_warning=True)
 def get_driver():
     option = Options()
     option.add_argument("--headless") #headless
     option.add_argument("--mute-audio")
     option.add_argument("--disable-gpu")
     option.add_argument("--no-sandbox")
-    return webdriver.Chrome(service=installff(), options=option)
+    return webdriver.Chrome(service=Service(executable_path=installff()), options=option)
     
 @st.experimental_memo(show_spinner=False,suppress_st_warning=True)
 def ambil_komen(url, angka, semua):
