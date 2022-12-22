@@ -203,7 +203,7 @@ def get_driver():
     option.add_argument("--mute-audio")
     option.add_argument("--disable-gpu")
     option.add_argument("--no-sandbox")
-    return webdriver.Chrome(service=Service(installff()), options=option)
+    return webdriver.Chrome(service=installff(), options=option)
     
 @st.experimental_memo(show_spinner=False,suppress_st_warning=True)
 def ambil_komen(url, angka, semua):
