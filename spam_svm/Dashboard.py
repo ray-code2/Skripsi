@@ -207,7 +207,7 @@ def get_driver():
     d = webdriver.Chrome(service=Service(executable_path=installff()), options=option)
     return d
     
-@st.experimental_memo(show_spinner=False,suppress_st_warning=True)
+# @st.experimental_memo(show_spinner=False,suppress_st_warning=True)
 def ambil_komen(url, angka, semua):
     
 #     chromedriver_autoinstaller.install()
