@@ -4,11 +4,8 @@ import pandas as pd
 import numpy as np
 import xlsxwriter
 
-# from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 #import library preprocessing 
 from sklearn.svm import SVC
-# from selenium.webdriver import FirefoxOptions
-
 import re
 import time
 from nltk.corpus import stopwords
@@ -23,20 +20,12 @@ from sklearn.preprocessing import LabelEncoder
 # from sklearn.multiclass import OneVsOneClassifier
 #import library ambil data komentar
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.chrome.service import Service 
+from selenium.webdriver.chrome.service import Service
+# from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
-# from webdriver_manager.firefox import GeckoDriverManager
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-
-import os, sys
-# /home/appuser/venv/lib/python3.10/site-packages/selenium/webdriver/chrome/webdriver.py
-
-
-
 from bs4 import BeautifulSoup
 import time
 
@@ -50,14 +39,15 @@ from pyxlsb import open_workbook as open_xlsb
 import joblib
 
 # https://www.youtube.com/watch?v=EJYK3PtyJLY
-import nltk
-# from webdriver_manager.core.utils import ChromeType
 
 
-# st.set_page_config(
-#     page_title="Youtube Spam Detection",
-#     page_icon="💬",
-# )
+import nltk 
+
+
+st.set_page_config(
+    page_title="Decter",
+    page_icon="💬",
+)
 
 def stopword_removal(words):
     list_stopwords = stopwords.words('indonesian')
@@ -87,15 +77,15 @@ def stemming(comment):
 
     
     
-# #Style 
-# st.markdown("""
-# <style>
-# .css-1lsmgbg.egzxvld0 , .css-6x4l1z.edgvbvh3
-# {
-#     visibility:hidden;
-# }
-# </style>
-# """,unsafe_allow_html=True)
+#Style 
+st.markdown("""
+<style>
+.css-1lsmgbg.egzxvld0 , .css-6x4l1z.edgvbvh3
+{
+    visibility:hidden;
+}
+</style>
+""",unsafe_allow_html=True)
 
 # pilih_menu = st.sidebar.selectbox("Navigasi" ,('Halaman Utama','Halaman Dashboard','Tentang Aplikasi'))
 def trans(komentar):
@@ -146,8 +136,7 @@ def color_df(val):
 
 
 
-
-@st.experimental_memo(show_spinner=False,suppress_st_warning=True)
+@st.experimental_singleton(show_spinner=False,suppress_st_warning=True)
 def countPlot(df):
     col1,col2 = st.columns([2,2])
     with col1:
@@ -190,47 +179,24 @@ def countPlot(df):
         plt.ylabel(".", fontsize=1)
         plt.title("Pie Plot", fontsize=26, color='white')
         st.pyplot(fig)
+    
+    
 
-@st.experimental_singleton
-def installff():
-  os.system('sbase install chromedriver latest')
-  os.system('ln -s /home/appuser/venv/lib/python3.10/site-packages/seleniumbase/drivers/chromedriver')
-  return '/home/appuser/venv/lib/python3.10/site-packages/seleniumbase/drivers/chromedriver'
-
-
-def get_driver():
-    option = Options()
+@st.experimental_memo(show_spinner=False,suppress_st_warning=True)
+def ambil_komen(url, angka, semua):
+    option = webdriver.ChromeOptions()
     option.add_argument("--headless") #headless
     option.add_argument("--mute-audio")
     option.add_argument("--disable-gpu")
-    option.add_argument("--no-sandbox")
-    d = webdriver.Chrome(service=Service(executable_path=installff()), options=option)
-    return d
-    
-# @st.experimental_memo(show_spinner=False,suppress_st_warning=True)
-def ambil_komen(url, angka, semua):
-    
-#     chromedriver_autoinstaller.install()
-#     option = Options()
-#     option.binary = FirefoxBinary(r'/Applications/Firefox.app/Contents/MacOS/firefox')
-#     option.binary_location = FirefoxBinary("./firefox/firefox")
-#     option.add_argument("--headless") #headless
-#     option.add_argument("--mute-audio")
-#     option.add_argument("--disable-gpu")
-#     option.binary_location = r"C:\Program Files\Mozilla Firefox\firefox.exe"
-#     option.add_argument("--no-sandbox")
-#     option.add_argument("--disable-dev-shm-usage")
-#     option.add_argument("--disable-features=NetworkService")
-#     option.add_argument("--window-size=1920x1080")
-#     option.add_argument("--disable-features=VizDisplayCompositor")
-#     service = ChromeService(executable_path='/home/appuser/venv/lib/python3.10/site-packages/seleniumbase/drivers/chromedriver')
-# service = service
-#     service = Service(GeckoDriverManager().install())
-#     serv = Service(GeckoDriverManager().install())
-    driver = get_driver()
-#     service.start()
+    option.add_argument('--no-sandbox')
+    driver_path = '/usr/local/bin/chromedriver'
+    # option.binary_location = '/opt/chrome/chrome'
+    option.add_argument('--disable-blink-features=AutomationControlled')
+    option.add_argument('--disable-dev-shm-usage') 
+    driver = webdriver.Chrome(service= Service(executable_path=driver_path),options=option)
+    wait = WebDriverWait(driver,35)
     driver.get(url)
-    wait = WebDriverWait(driver,25)
+    time.sleep(1)
     if semua == True:
         prev_h = 0
         while True:
@@ -301,9 +267,9 @@ def ambil_komen(url, angka, semua):
         # promosi = df.loc[df.Label == 'promosi', 'Komentar setelah dibersihkan'].value_counts().head(10).index #10 komentar promosi
         # normal = df.loc[df.Label == 'bukan spam', 'Komentar setelah dibersihkan'].value_counts().head(10).index #10 komentar bukan spam
         excel = to_excel(df)
-        with st.expander("lihat Data"):
-            result = pd.concat([df, dt], axis=1)
-            st.table(data= result.style.applymap(color_df, subset=['Label']))
+        # with st.expander("lihat Data"):
+        result = pd.concat([df, dt], axis=1)
+        st.table(data= result.style.applymap(color_df, subset=['Label']))
         st.download_button(
             label="Download data",
             data=excel,
@@ -315,7 +281,7 @@ def ambil_komen(url, angka, semua):
         for item in range(angka): #angka adalah jumlah iterasi dan per iterasi akan di scrape 20 data
             wait.until(EC.visibility_of_element_located((By.TAG_NAME, "body"))).send_keys(Keys.END)
             # wait.until(EC.element_to_be_clickable((By.XPATH,"//*[@class='input-content' or @class='style-scope' or @class='paper-input-container']")))
-            time.sleep(10) #menunggu 10 detik scroll
+            time.sleep(13) #menunggu 13 detik scroll
         data = []
 
         # for lnk in wait.until(EC.presence_of_all_elements_located((By.XPATH, "//h2[contains(@class, 'yt-simple-endpoint style-scope yt-formatted-string')]/a"))):
@@ -330,11 +296,11 @@ def ambil_komen(url, angka, semua):
             # //a[@href] this works but not link in the comment!
             # //div[@id='comment-content']//a[@href] #ini bisa!
 
-        elems = wait.until(lambda x: x.find_elements(By.XPATH,"//div[@id='comment-content']//a[@href]"))
+        elems = driver.find_elements(By.XPATH,"//div[@id='comment-content']//a[@href]")
         for elem in elems:
             print(elem.get_attribute("href"))
             data.append(elem.get_attribute("href"))
-    
+
         dataframe = pd.DataFrame(data, columns=['Komentar'])
         # st.write(dataframe) 
         soup = BeautifulSoup(driver.page_source,'html.parser')
@@ -344,12 +310,11 @@ def ambil_komen(url, angka, semua):
         title_text_div = soup.select_one('#container h1')
         title = title_text_div and title_text_div.text
         # st.session_state['judul'] = title
-        driver.quit()
         a = dataframe['Komentar']
         # st.session_state['Sebelum'] = a
         # a.to_csv('data_scrape.txt',sep='\t',index=False)
         # st.success('Done Scraping')
-
+        driver.quit()
         #Preprocessing
         dataframe['Komentar'] = dataframe['Komentar'].apply(preprocess)
         dataframe['Komentar'] = dataframe['Komentar'].apply(token)
@@ -433,14 +398,11 @@ def ambil_komen(url, angka, semua):
     #     st.info('Data tidak mengandung tautan!', icon="ℹ️")
 
 #code utama
-
-
 if __name__ == "__main__":
-#     _ = installff()
-    nltk.download('stopwords')
     le = LabelEncoder()
-    path = open(r'spam_svm/data.csv')
-    df = pd.read_csv(path)
+    # path = open(r'/Users/raymondtjahyadi/Testing/data.csv')
+    #/opt/app/data.csv
+    df = pd.read_csv('/opt/app/data.csv')
     df['Label'] = le.fit_transform(df['Label'])
     X = df['Komentar'].values
     y = df['Label'].values
@@ -451,8 +413,8 @@ if __name__ == "__main__":
     list_stopwords.extend(["nih","jess","gak","ngk","enga","jes","wkwk","tanboy","waseda boys","ken",'ya','jer',"az","ah","david","David","Jerome","jerome","justin","anya","oh","kgk","gk",  "si", 'y', 'jd', 'bang','dong' 'bangg', 'bg', 'bng', 'ygy', 'yg', 'om', 'nya','baiknya', 'berkali', 'boys', 'kali', 'kurangnya', 'mata', 'olah', 'sekurang', 'setidak', 'tama', 'tidaknya', 'waseda'])
     tfidf = TfidfVectorizer(max_features=2000, min_df=5, max_df=0.7,stop_words=list_stopwords,ngram_range=(1,3))
     text_tf = tfidf.fit_transform(X.astype('U'))
-    X_train,X_test,y_train,y_test = train_test_split(text_tf,y,test_size=0.25,random_state=33)
-    model = joblib.load('spam_svm/OVO') # Load model OVO
+    X_train,X_test,y_train,y_test = train_test_split(text_tf,y,test_size=0.27,random_state=33)
+    model = joblib.load('OVO') # Load model OVO
     y_pred = model.predict(X_test)
     print("Support Vector Machine")
     print('Accuracy  = ', round(accuracy_score(y_test, y_pred)*100,2),'%')
@@ -464,8 +426,10 @@ if __name__ == "__main__":
     print("Support Vector Machine")
     print(classification_report(y_test,y_pred))
 
-    st.markdown(" ## Aplikasi Deteksi Komentar Spam Youtube dengan Metode SVM Berbasis Web")
-    link_input = st.text_input('Input link dari Video Youtube: ')
+    # st.markdown(" ## Aplikasi Deteksi Komentar Spam Youtube dengan Metode SVM Berbasis Web")
+    st.markdown(f" ## <div style='text-align: center;'> Decter </div>",
+            unsafe_allow_html=True)
+    link_input = st.text_input('Input link dari Video Youtube: ','')
     angka = 0
     pilih = st.sidebar.number_input('berapa banyak komentar yang mau di klasifikasi dari video tersebut?',min_value=0,max_value=500,step=100)
     semua = st.sidebar.checkbox('Semua Komentar')
@@ -482,9 +446,12 @@ if __name__ == "__main__":
     else:
         angka = 0
     
+
     get = st.button("Klasifikasi Data")
     start = time.perf_counter()
     if get:
+        nltk.download('stopwords')
+        nltk.download('punkt')
         if angka == 0:
             st.error('Tidak ada data yang diklasifikasi!', icon="🚨")
             st.stop()
@@ -492,6 +459,7 @@ if __name__ == "__main__":
             st.warning('Belum input Link!')
         else:
             with st.spinner('Dimohon tunggu sebentar...'):
+                # time.sleep(1)
                 ambil_komen(link_input , angka , semua)
                 end_time = time.perf_counter()
                 hasil = end_time - start
