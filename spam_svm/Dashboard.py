@@ -42,7 +42,8 @@ import joblib
 
 
 import nltk 
-
+nltk.download('stopwords')
+nltk.download('punkt')
 
 st.set_page_config(
     page_title="Decter",
@@ -281,7 +282,7 @@ def ambil_komen(url, angka, semua):
         for item in range(angka): #angka adalah jumlah iterasi dan per iterasi akan di scrape 20 data
             wait.until(EC.visibility_of_element_located((By.TAG_NAME, "body"))).send_keys(Keys.END)
             # wait.until(EC.element_to_be_clickable((By.XPATH,"//*[@class='input-content' or @class='style-scope' or @class='paper-input-container']")))
-            time.sleep(13) #menunggu 13 detik scroll
+            time.sleep(16) #menunggu 16 detik scroll
         data = []
 
         # for lnk in wait.until(EC.presence_of_all_elements_located((By.XPATH, "//h2[contains(@class, 'yt-simple-endpoint style-scope yt-formatted-string')]/a"))):
@@ -450,8 +451,6 @@ if __name__ == "__main__":
     get = st.button("Klasifikasi Data")
     start = time.perf_counter()
     if get:
-        nltk.download('stopwords')
-        nltk.download('punkt')
         if angka == 0:
             st.error('Tidak ada data yang diklasifikasi!', icon="🚨")
             st.stop()
