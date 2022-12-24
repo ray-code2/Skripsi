@@ -403,7 +403,7 @@ if __name__ == "__main__":
     le = LabelEncoder()
     # path = open(r'spam_svm/data.csv')
     #/opt/app/data.csv
-    df = pd.read_csv('/opt/app/data.csv')
+    df = pd.read_csv('spam_svm/data.csv')
     df['Label'] = le.fit_transform(df['Label'])
     X = df['Komentar'].values
     y = df['Label'].values
