@@ -1,9 +1,10 @@
 # FROM selenium/standalone-chrome:latest
-FROM python:3.10.6
+FROM python:3.10-slim
 ADD Dashboard.py .
-COPY requirements.txt /opt/app/requirements.txt
+RUN pip install -U --upgrade pip
 WORKDIR /opt/app
-RUN pip install --no-cache-dir -r requirements.txt
+COPY requirements.txt /opt/app/requirements.txt
+RUN pip install -r requirements.txt
 COPY . /opt/app
 COPY .streamlit/config.toml /root/.streamlit/config.toml
 COPY /data.csv /opt/app/data.csv
@@ -15,12 +16,13 @@ RUN apt-get update && apt-get install -y \
     software-properties-common \
     git \
     && rm -rf /var/lib/apt/lists/* 
-    # apt-get install -y libglib2.0 libnss3 libgconf-2-4 libfontconfig1
 
-RUN apt-get -y update
-RUN pip install --upgrade pip
-RUN apt-get install zip -y
+RUN apt-get update && apt-get install -y wget 
+RUN apt-get -y update 
+RUN apt-get install zip -y 
 RUN apt-get install unzip -y
+
+    # apt-get install -y libglib2.0 libnss3 libgconf-2-4 libfontconfig1
 
 # Install chromedriver
 RUN wget -N https://chromedriver.storage.googleapis.com/108.0.5359.71/chromedriver_linux64.zip -P ~/
@@ -30,7 +32,7 @@ RUN mv -f ~/chromedriver /usr/local/bin/chromedriver
 RUN chown root:root /usr/local/bin/chromedriver
 RUN chmod 0755 /usr/local/bin/chromedriver
 
-
+RUN apt-get update && apt-get install -y curl 
 # Install chrome broswer
 RUN curl -sS -o - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
 RUN echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list
